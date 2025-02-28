@@ -1,18 +1,24 @@
 import SwiftUI
 
 struct SchoolTabView: View {
-    @ObservedObject var examViewModel: ExamListViewModel
     @ObservedObject var scheduleViewModel: ScheduleViewModel
+    @ObservedObject var examViewModel: ExamViewModel
+
+    init(scheduleViewModel: ScheduleViewModel, examViewModel: ExamViewModel) {
+        self.scheduleViewModel = scheduleViewModel
+        self.examViewModel = examViewModel
+    }
 
     var body: some View {
         TabView {
-            ExamListView(viewModel: examViewModel)
+            ScheduleView(viewModel: scheduleViewModel, examViewModel: examViewModel)
                 .tabItem {
-                    Label("Egzaminy", systemImage: "list.bullet")
+                    Label("Plan", systemImage: "calendar")
                 }
-            ScheduleView(viewModel: scheduleViewModel, examViewModel: examViewModel) // Dodano examViewModel
+
+            ExamListView(examViewModel: examViewModel)
                 .tabItem {
-                    Label("Plan Lekcji", systemImage: "calendar")
+                    Label("Egzaminy", systemImage: "doc.text.magnifyingglass")
                 }
         }
     }

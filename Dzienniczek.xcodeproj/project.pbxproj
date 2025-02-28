@@ -54,10 +54,21 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
+				UserNotifications.swift,
 			);
 			target = 0383FC242D6D057400F336D8 /* Dzienniczek */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+		03B3532E2D72591700B2A9F1 /* Exceptions for "Dzienniczek" folder in "Copy Bundle Resources" phase from "Dzienniczek" target */ = {
+			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
+			buildPhase = 0383FC232D6D057400F336D8 /* Resources */;
+			membershipExceptions = (
+				UserNotifications.swift,
+			);
+		};
+/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		030DE05E2D6E855B00082C98 /* Widget */ = {
@@ -74,6 +85,7 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				0383FC592D6D0C2200F336D8 /* Exceptions for "Dzienniczek" folder in "Dzienniczek" target */,
+				03B3532E2D72591700B2A9F1 /* Exceptions for "Dzienniczek" folder in "Copy Bundle Resources" phase from "Dzienniczek" target */,
 			);
 			path = Dzienniczek;
 			sourceTree = "<group>";

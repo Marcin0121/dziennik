@@ -46,6 +46,13 @@ extension Exam {
             return Color.purple
         case .oralExam:
             return Color.green
+        case .sprawdzian:
+            return Color.cyan
+        case .kartkowka:
+            return Color.indigo
+        case .odpowiedz:
+            return Color.orange
+
         }
     }
 }

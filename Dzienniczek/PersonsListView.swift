@@ -5,38 +5,17 @@ struct PersonsListView: View {
     @State private var showingAddPerson = false
 
     var body: some View {
-        NavigationView {
-            VStack {
-                List {
-                    ForEach(viewModel.persons) { person in
-                        NavigationLink(destination: PersonDetailView(person: person, viewModel: viewModel, isEditing: true)) {
-                            Text(person.name)
-                                .font(.custom("HelveticaNeue-Bold", size: 16))
-                                .foregroundColor(person.name == "Marcin" ? .red : .primary)
-                        }
-                    }
-                    .onDelete { indexSet in
-                        viewModel.removePerson(at: indexSet)
-                    }
-                }
-                .listStyle(InsetGroupedListStyle())
-            }
-            .navigationTitle("Spis Osób")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        showingAddPerson.toggle()
-                    }) {
-                        Image(systemName: "plus")
-                            .padding()
-                            .background(Color.blue.opacity(0.2))
-                            .clipShape(Circle())
-                    }
+        List {
+            ForEach(viewModel.persons) { person in
+                NavigationLink(destination: PersonDetailView(person: person, viewModel: viewModel)) {
+                    Text(person.name).font(.custom("HelveticaNeue-Bold", size: 16)).foregroundColor(person.name == "Marcin" ? .red : .primary)
                 }
             }
-            .sheet(isPresented: $showingAddPerson) {
-                AddPersonView(viewModel: viewModel)
-            }
+            .onDelete { indexSet in viewModel.removePerson(at: indexSet) }
         }
+        .listStyle(InsetGroupedListStyle())
+        .navigationTitle("Spis Osób")
+        .toolbar { ToolbarItem(placement: .navigationBarTrailing) { Button(action: { showingAddPerson.toggle() }) { Image(systemName: "plus") } } }
+        .sheet(isPresented: $showingAddPerson) { AddPersonView(viewModel: viewModel) }
     }
 }

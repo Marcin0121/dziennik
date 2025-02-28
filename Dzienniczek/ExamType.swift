@@ -1,21 +1,11 @@
-import SwiftUI
+enum ExamType: String, CaseIterable, Codable, Identifiable {
+    case sprawdzian = "Sprawdzian"
+    case kartkowka = "Kartkówka"
+    case odpowiedz = "Odpowiedź"
+    case quiz = "Quiz"
+    case mockExam = "Próbny Egzamin"
+    case oralExam = "Egzamin Ustny"
+    case test = "Test"
 
-enum ExamType: String, Codable, CaseIterable {
-    case test = "Sprawdzian"
-    case quiz = "Kartkówka"
-    case mockExam = "Matura próbna"
-    case oralExam = "Odpowiedź ustna"
-
-    var color: Color {
-        switch self {
-        case .test:
-            return .red
-        case .quiz:
-            return .blue
-        case .mockExam:
-            return .purple
-        case .oralExam:
-            return .green
-        }
-    }
+    var id: String { self.rawValue }
 }
