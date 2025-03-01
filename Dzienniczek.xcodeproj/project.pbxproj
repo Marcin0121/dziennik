@@ -55,6 +55,7 @@
 			membershipExceptions = (
 				Info.plist,
 				UserNotifications.swift,
+				zapiszDaneDoPliku.swift,
 			);
 			target = 0383FC242D6D057400F336D8 /* Dzienniczek */;
 		};
@@ -66,6 +67,7 @@
 			buildPhase = 0383FC232D6D057400F336D8 /* Resources */;
 			membershipExceptions = (
 				UserNotifications.swift,
+				zapiszDaneDoPliku.swift,
 			);
 		};
 /* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */

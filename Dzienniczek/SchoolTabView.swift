@@ -11,7 +11,7 @@ struct SchoolTabView: View {
 
     var body: some View {
         TabView {
-            ScheduleView(viewModel: scheduleViewModel, examViewModel: examViewModel)
+            ScheduleView(viewModel: scheduleViewModel) 
                 .tabItem {
                     Label("Plan", systemImage: "calendar")
                 }

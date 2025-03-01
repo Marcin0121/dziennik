@@ -2,9 +2,13 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var scheduleViewModel = ScheduleViewModel()
-    @StateObject var examViewModel = ExamViewModel() // Zmien typ tutaj.
+    @StateObject var examViewModel = ExamViewModel()
     @StateObject private var workScheduleViewModel = WorkScheduleViewModel()
     @State private var selectedTab: Tab?
+    @State private var entries: [Entry] = []
+        @State private var subjects: [Subject] = []
+        let entriesFileName = "entries.json"
+        let subjectsFileName = "subjects.json"
 
     enum Tab {
         case school, work, persons, salary
@@ -13,7 +17,7 @@ struct ContentView: View {
     var body: some View {
         TabView(selection: $selectedTab) {
             NavigationView {
-                SchoolTabView(scheduleViewModel: scheduleViewModel, examViewModel: examViewModel) // Upewnij się, że przekazujesz examViewModel
+                SchoolTabView(scheduleViewModel: scheduleViewModel, examViewModel: examViewModel) // Dodaj examViewModel
                     .navigationTitle("Szkoła")
             }
             .tabItem { Label("Szkoła", systemImage: "book.closed") }
@@ -40,7 +44,23 @@ struct ContentView: View {
             .tabItem { Label("Wypłata", systemImage: "dollarsign.circle") }
             .tag(Tab.salary)
         }
+        
     }
+    init() {
+        let entriesFromFile = Array<Entry>.odczytajZPliku(nazwaPliku: entriesFileName) ?? []
+        let subjectsFromFile = Array<Subject>.odczytajZPliku(nazwaPliku: subjectsFileName) ?? []
+
+        _entries = State(initialValue: entriesFromFile)
+        _subjects = State(initialValue: subjectsFromFile)
+    }
+
+        func saveEntries(){
+            entries.zapiszDoPliku(nazwaPliku: entriesFileName)
+        }
+        func saveSubjects(){
+            subjects.zapiszDoPliku(nazwaPliku: subjectsFileName)
+        }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
