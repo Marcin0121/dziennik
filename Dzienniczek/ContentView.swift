@@ -5,10 +5,7 @@ struct ContentView: View {
     @StateObject var examViewModel = ExamViewModel()
     @StateObject private var workScheduleViewModel = WorkScheduleViewModel()
     @State private var selectedTab: Tab?
-    @State private var entries: [Entry] = []
-        @State private var subjects: [Subject] = []
-        let entriesFileName = "entries.json"
-        let subjectsFileName = "subjects.json"
+    
 
     enum Tab {
         case school, work, persons, salary
@@ -44,23 +41,7 @@ struct ContentView: View {
             .tabItem { Label("Wypłata", systemImage: "dollarsign.circle") }
             .tag(Tab.salary)
         }
-        
     }
-    init() {
-        let entriesFromFile = Array<Entry>.odczytajZPliku(nazwaPliku: entriesFileName) ?? []
-        let subjectsFromFile = Array<Subject>.odczytajZPliku(nazwaPliku: subjectsFileName) ?? []
-
-        _entries = State(initialValue: entriesFromFile)
-        _subjects = State(initialValue: subjectsFromFile)
-    }
-
-        func saveEntries(){
-            entries.zapiszDoPliku(nazwaPliku: entriesFileName)
-        }
-        func saveSubjects(){
-            subjects.zapiszDoPliku(nazwaPliku: subjectsFileName)
-        }
-    
 }
 
 struct ContentView_Previews: PreviewProvider {
